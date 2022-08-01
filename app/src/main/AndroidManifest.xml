@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TapityTap">
         <activity
+            android:name=".Coin_Store_Activity"
+            android:exported="false" />
+        <activity
             android:name=".myScoreActivity"
             android:exported="false" />
         <activity

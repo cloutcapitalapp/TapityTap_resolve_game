@@ -11,4 +11,8 @@
     <string name="score_tab">SCORE TAB</string>
     <string name="_0">0</string>
     <string name="_100_000">100,000</string>
+    <string name="decrease_score_5000_points_at_the_end_of_the_game">Decrease score 5000 points at the end of the game</string>
+    <string name="decrease_score_10000_points_at_the_end_of_the_game">Decrease score 10000 points at the end of the game</string>
+    <string name="coin_store">COIN STORE</string>
+    <string name="decrease_score_2000_points_at_the_end_of_the_game">Decrease score 2000 points at the end of the game</string>
 </resources>

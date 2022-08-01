@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
@@ -23,15 +24,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    MediaPlayer music;
+    MediaPlayer mediaPlayer;
     userIDGenerator_Class userIDGen_Class;
     int gameScore, buttonTapCount;
-    Button gameLogic_Button, gameStart_Button, scoreTab_Button;
+    Button gameLogic_Button, gameStart_Button, scoreTab_Button, coinStore_Button;
     TextView scoreCounter, scoreBonus, timerCounter;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef =
             database.getReference("UsersID");
     public void allVars(){
+        mediaPlayer =
+                MediaPlayer.create(getApplicationContext(),
+                        R.raw.backgroundmusic);
         gameScore = 100000;
         buttonTapCount = 0;
         userIDGen_Class = new userIDGenerator_Class();
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         timerCounter = findViewById(R.id.timer_TextView);
         scoreCounter = findViewById(R.id.gameCount_TextView);
         scoreTab_Button = findViewById(R.id.scoreTabButton);
+        coinStore_Button = findViewById(R.id.coinStore_Button);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart(){
         super.onStart();
-
         SharedPreferences uID =
                 this.getSharedPreferences("uID", 0);
 
@@ -75,7 +79,9 @@ public class MainActivity extends AppCompatActivity {
 
         //On button press, start game logic.
         gameStart_Button.setOnClickListener(v -> {
+            allVars();
             gameLogic_Button.setText(R.string.on_start_tap);
+            mediaPlayer.start();
             gameTimer();
         });
 
@@ -86,6 +92,21 @@ public class MainActivity extends AppCompatActivity {
 
             startActivity(goToScoreTab);
         });
+
+        coinStore_Button.setOnClickListener(v -> {
+            notReady_Alert();
+        });
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+    }
+    @Override
+    protected void onStop(){
+        super.onStop();
+        allVars();
+        mediaPlayer.stop();
+        mediaPlayer.release();
     }
     @Override
     protected void onPause(){
@@ -124,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void gameLogic(){
+        allVars();
         gameStart_Button.setOnClickListener(v -> {
             gameScore = gameScore - 10;
             buttonTapCount = buttonTapCount + 1;
@@ -209,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
         confirm.setTitle("WOOOO!");
-        confirm.setMessage("You made it! We'll save" +
+        confirm.setMessage("You made it! We'll save " +
                 "your score " +
                 "for you in the score tab.");
 
@@ -244,9 +266,58 @@ public class MainActivity extends AppCompatActivity {
                                             (endingScore)));
             confirm.dismiss();
 
+            mediaPlayer.stop();
+            mediaPlayer.release();
+
             finish();
             startActivity(getIntent());
         });
         confirm.show();
+    }
+    private void notReady_Alert(){
+        allVars();
+
+        final AlertDialog confirm = new
+                MaterialAlertDialogBuilder
+                (MainActivity.this).create();
+        LinearLayout layout =
+                new LinearLayout(getApplicationContext());
+        layout.setOrientation(LinearLayout.VERTICAL);
+        confirm.setView(layout);
+
+        confirm.setCancelable(false);
+        confirm.setCanceledOnTouchOutside(false);
+
+        Window window = confirm.getWindow();
+        window.setGravity(Gravity.BOTTOM);
+
+        window.setLayout(ViewGroup
+                        .LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        confirm.setTitle("Coin Store");
+        confirm.setMessage("Store isn't ready just yet, but we're saving your score.");
+
+        MaterialButton button =
+                new MaterialButton(MainActivity.this);
+        button.setText(R.string.confirm_string);
+        button.setBackgroundResource(R.color.purple_200);
+        layout.addView(button);
+        button.setOnClickListener(v -> {
+
+            confirm.dismiss();
+
+            mediaPlayer.stop();
+            mediaPlayer.release();
+
+            finish();
+            startActivity(getIntent());
+        });
+        confirm.show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        //Do nothing
     }
 }

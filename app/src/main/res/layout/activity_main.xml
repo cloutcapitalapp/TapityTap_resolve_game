@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Main_Frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -23,7 +24,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
+        android:drawableStart="@drawable/ic_baseline_videogame_asset_40"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="center"
         android:text="@string/_100_000"
+        android:textColor="#7CADE8"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,8 +39,11 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
+        android:drawableStart="@drawable/ic_baseline_access_time_filled_40"
+        android:fontFamily="sans-serif-thin"
+        android:gravity="center"
         android:text="@string/_0"
-        android:textSize="45sp"
+        android:textSize="60sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -51,13 +59,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="20dp" />
+        app:layout_constraintGuide_percent="0.0" />
 
     <TextView
         android:id="@+id/ScoreBonus_TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="170dp"
+        android:drawableStart="@drawable/ic_baseline_control_point_40"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
         android:text="@string/bonus"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,15 +79,42 @@
         android:id="@+id/scoreTabButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="28dp"
         android:background="@android:color/transparent"
-        android:fontFamily="sans-serif-condensed-light"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="center"
         android:text="MY SCORES"
-        android:textColor="#00D4FF"
+        android:textColor="#7CADE8"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/view"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/coinStore_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:text="Coin Store"
+        android:textColor="#7CADE8"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/view" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="3dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="3dp"
+        android:background="#FF722B"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gameStart_Button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

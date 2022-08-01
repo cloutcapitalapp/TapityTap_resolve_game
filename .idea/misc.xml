@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/app_decent1/src/main/res/layout/activity_main.xml" value="0.25104166666666666" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="app/src/main/res/drawable/ic_baseline_attach_money_40.xml" value="0.1935" />
+        <entry key="app/src/main/res/layout/activity_coin_store.xml" value="0.21643077382683876" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.24328033447265623" />
         <entry key="app/src/main/res/layout/activity_my_score_actiity.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_score_tab.xml" value="0.12386018237082067" />
         <entry key="app/src/main/res/layout/activity_tapity_tap_launcher.xml" value="0.253125" />
