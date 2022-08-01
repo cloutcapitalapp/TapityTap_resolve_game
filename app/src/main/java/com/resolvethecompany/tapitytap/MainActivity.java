@@ -47,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Take instance of Action Bar
+        // using getSupportActionBar and
+        // if it is not Null
+        // then call hide function
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         //Collect all vars
         allVars();
 
@@ -74,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         scoreTab_Button.setOnClickListener(v -> {
             Intent goToScoreTab = new Intent(
                     MainActivity.this,
-                    myScoreActiity.class);
+                    myScoreActivity.class);
 
             startActivity(goToScoreTab);
         });
