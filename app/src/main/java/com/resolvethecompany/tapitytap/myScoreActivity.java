@@ -2,7 +2,6 @@ package com.resolvethecompany.tapitytap;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,12 +14,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
 
-public class myScoreActiity extends AppCompatActivity {
+public class myScoreActivity
+        extends AppCompatActivity {
 
     // Array of strings...
     ArrayList<String> mobileArray;
@@ -36,10 +34,18 @@ public class myScoreActiity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_score_actiity);
 
-        mobileArray = new ArrayList<String>();
+        // Take instance of Action Bar
+        // using getSupportActionBar and
+        // if it is not Null
+        // then call hide function
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
+        mobileArray = new ArrayList<>();
         Collections.reverse(mobileArray);
 
-        adapter = new ArrayAdapter<String>(this,
+        adapter = new ArrayAdapter<>(this,
                 R.layout.listitem,
                 R.id.scoreItem_TextView,
                 mobileArray);
@@ -62,7 +68,8 @@ public class myScoreActiity extends AppCompatActivity {
                 .addValueEventListener(new ValueEventListener() {
 
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    public void
+                    onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         // This method is called once with the initial value and again
                         // whenever data at this location is updated.
                         //String value = dataSnapshot.getValue(String.class);
@@ -74,7 +81,8 @@ public class myScoreActiity extends AppCompatActivity {
                                     scoreValues + " " + mobileArray);
                             adapter.notifyDataSetChanged();
                         }
-                        Log.d("snapshot_test_passed", "" + mobileArray);
+                        Log.d("snapshot_test_passed", ""
+                                + mobileArray);
                     }
 
                     @Override
@@ -93,9 +101,8 @@ public class myScoreActiity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent backToGame = new
-                Intent(myScoreActiity.this,
+                Intent(myScoreActivity.this,
                 MainActivity.class);
         startActivity(backToGame);
-        return;
     }
 }
