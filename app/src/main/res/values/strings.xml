@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TapityTap</string>
+    <string name="bonus_100">100 POINT BOOST!</string>
+    <string name="bonus_500">500 POINT BOOST!</string>
+    <string name="bonus_1000">1000 POINT BOOST!</string>
+    <string name="on_start_tap">TAP</string>
+    <string name="restart">Restart</string>
+    <string name="done">done!</string>
+    <string name="bonus">BONUS</string>
+    <string name="confirm_string">Confirm</string>
+    <string name="score_tab">SCORE TAB</string>
+    <string name="_0">0</string>
+    <string name="_100_000">100,000</string>
+</resources>
